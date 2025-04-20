@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tharani - Student Portal | Academics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #fca311;
+            --info: #4895ef;
+            --text-light: #6c757d;
+            --green: #06d6a0;
+            --red: #ef476f;
+            --orange: #ff9e00;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles with Gradient */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Decorative Elements */
+        .header-shape {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .header-shape-2 {
+            position: absolute;
+            top: -30px;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        /* Navigation with Hover Effects */
+        nav {
+            background-color: var(--secondary);
+            padding: 0.8rem;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            margin: 0 0.3rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:before, nav a.active:before {
+            width: 80%;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Main Container */
+        .container {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Academic Summary Section */
+        .academic-summary {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .academic-summary h2 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .summary-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--info) 100%);
+            opacity: 0.1;
+            border-radius: 0 0 0 100%;
+            z-index: 0;
+        }
+        
+        .academic-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-box {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--primary);
+        }
+        
+        .info-box:nth-child(2) {
+            border-bottom-color: var(--accent);
+        }
+        
+        .info-box:nth-child(3) {
+            border-bottom-color: var(--success);
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .info-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Progress Bar */
+        .progress-section {
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        
+        .progress-name {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .progress-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: var(--light);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-filled {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 30px;
+            transition: width 0.6s ease;
+        }
+        
+        /* Semester Wise Results */
+        .semester-results {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        .semester-results h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .semester-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .semester-tab {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--light);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+        }
+        
+        .semester-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .semester-content {
+            display: none;
+        }
+        
+        .semester-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .result-table th, .result-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light);
+        }
+        
+        .result-table th {
+            background-color: var(--light);
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .result-table tr:hover {
+            background-color: rgba(0,0,0,0.01);
+        }
+        
+        .grade {
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .grade-a {
+            background-color: rgba(6, 214, 160, 0.1);
+            color: var(--green);
+        }
+        
+        .grade-b {
+            background-color: rgba(72, 149, 239, 0.1);
+            color: var(--info);
+        }
+        
+        .grade-c {
+            background-color: rgba(252, 163, 17, 0.1);
+            color: var(--warning);
+        }
+        
+        .semester-summary {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .semester-gpa {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .cgpa-section {
+            position: relative;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+            margin-bottom: 3rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .cgpa-bg {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            opacity: 0.05;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .cgpa-display {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cgpa-display h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .cgpa-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: conic-gradient(var(--primary) 0%, var(--accent) 85%, var(--light) 85% 100%);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .cgpa-inner {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .cgpa-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .cgpa-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+        
+        .cgpa-tooltip {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Improvement Section */
+        .improvement-section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .improvement-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .improvement-chart {
+            margin: 2rem 0;
+            height: 300px;
+            position: relative;
+        }
+        
+        .chart-bar {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding: 0 1rem;
+        }
+        
+        .bar {
+            width: 60px;
+            background: linear-gradient(to top, var(--primary), var(--accent));
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            transition: height 1s ease;
+            animation: growBar 1.5s ease;
+        }
+        
+        @keyframes growBar {
+            from { height: 0; }
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-accent:before {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+        
+        .btn:hover:before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-accent:hover {
+            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.4);
+        }
+        
+        /* Footer with Gradient */
+        footer {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-shape {
+            position: absolute;
+            top: -50px;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .academic-info {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+            
+            .bar {
+                width: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .academic-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .semester-summary {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .cgpa-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .cgpa-inner {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .cgpa-value {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .semester-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .semester-tab {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .result-table {
+                font-size: 0.9rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .bar {
+                width: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-shape"></div>
+        <div class="header-shape-2"></div>
+        <div class="header-content">
+            <h1>Tharani's Student Portal</h1>
+            <p>B.Tech Information Technology | 2023-2027</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="academics.html" class="active">Academics</a>
+                <a href="personal.html">Personal</a>
+                <a href="projects.html">Projects</a>
+                <a href="achievements.html">Achievements</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="academic-summary">
+            <div class="summary-bg"></div>
+            <h2>Academic Overview</h2>
+            <p>Current semester: 4th Semester | B.Tech Information Technology</p>
+            
+            <div class="academic-info">
+                <div class="info-box">
+                    <div class="info-value">8.7</div>
+                    <div class="info-label">CGPA</div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-value">9.1</div>
+                    <div class="info-label">Current Semester GPA</div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-value">3</div>
+                    <div class="info-label">Semesters Completed</div>
+                </div>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-title">
+                    <div class="progress-name">Degree Completion</div>
+                    <div class="progress-value">37.5%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-filled" style="width: 37.5%;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="semester-results">
+            <h2>Semester Results</h2>
+            
+            <div class="semester-tabs">
+                <button class="semester-tab active" onclick="openSemester(event, 'sem1')">Semester 1</button>
+                <button class="semester-tab" onclick="openSemester(event, 'sem2')">Semester 2</button>
+                <button class="semester-tab" onclick="openSemester(event, 'sem3')">Semester 3</button>
+                <button class="semester-tab" onclick="openSemester(event, 'sem4')">Semester 4</button>
+            </div>
+            
+            <div id="sem1" class="semester-content active">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MA101</td>
+                            <td>Calculus and Linear Algebra</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS101</td>
+                            <td>Programming and Problem Solving</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td>PH101</td>
+                            <td>Engineering Physics</td>
+                            <td>3</td>
+                            <td><span class="grade grade-b">B+</span></td>
+                        </tr>
+                        <tr>
+                            <td>HS101</td>
+                            <td>Professional Communication</td>
+                            <td>2</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>ME101</td>
+                            <td>Engineering Mechanics</td>
+                            <td>3</td>
+                            <td><span class="grade grade-b">B</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="semester-summary">
+                    <div>
+                        <strong>Total Credits:</strong> 16
+                    </div>
+                    <div>
+                        <strong>GPA:</strong> <span class="semester-gpa">8.5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sem2" class="semester-content">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MA102</td>
+                            <td>Differential Equations</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS102</td>
+                            <td>Data Structures</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CH101</td>
+                            <td>Engineering Chemistry</td>
+                            <td>3</td>
+                            <td><span class="grade grade-b">B+</span></td>
+                        </tr>
+                        <tr>
+                            <td>EC101</td>
+                            <td>Basic Electronics</td>
+                            <td>3</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS103</td>
+                            <td>Digital Logic Design</td>
+                            <td>3</td>
+                            <td><span class="grade grade-a">A+</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="semester-summary">
+                    <div>
+                        <strong>Total Credits:</strong> 17
+                    </div>
+                    <div>
+                        <strong>GPA:</strong> <span class="semester-gpa">8.8</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sem3" class="semester-content">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MA201</td>
+                            <td>Probability and Statistics</td>
+                            <td>3</td>
+                            <td><span class="grade grade-b">B+</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS201</td>
+                            <td>Object Oriented Programming</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS202</td>
+                            <td>Database Management Systems</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS203</td>
+                            <td>Computer Organization</td>
+                            <td>3</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>HS201</td>
+                            <td>Economics for Engineers</td>
+                            <td>2</td>
+                            <td><span class="grade grade-b">B</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="semester-summary">
+                    <div>
+                        <strong>Total Credits:</strong> 16
+                    </div>
+                    <div>
+                        <strong>GPA:</strong> <span class="semester-gpa">8.7</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sem4" class="semester-content">
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credits</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CS301</td>
+                            <td>Algorithm Design and Analysis</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS302</td>
+                            <td>Operating Systems</td>
+                            <td>4</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>CS303</td>
+                            <td>Computer Networks</td>
+                            <td>3</td>
+                            <td><span class="grade grade-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>IT301</td>
+                            <td>Web Technologies</td>
+                            <td>3</td>
+                            <td><span class="grade grade-a">A+</span></td>
+                        </tr>
+                        <tr>
+                            <td>HS301</td>
+                            <td>Environmental Science</td>
+                            <td>2</td>
+                            <td><span class="grade grade-b">B+</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="semester-summary">
+                    <div>
+                        <strong>Total Credits:</strong> 16
+                    </div>
+                    <div>
+                        <strong>GPA:</strong> <span class="semester-gpa">9.1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cgpa-section">
+            <div class="cgpa-bg"></div>
+            <div class="cgpa-display">
+                <h2>Cumulative GPA</h2>
+                <div class="cgpa-circle">
+                    <div class="cgpa-inner">
+                        <div class="cgpa-value">8.7</div>
+                        <div class="cgpa-label">out of 10.0</div>
+                    </div>
+                    <div class="cgpa-tooltip">Great!</div>
+                </div>
+                <p>Your CGPA places you in the top 15% of your class.</p>
+            </div>
+        </div>
+        
+        <div class="improvement-section">
+            <h2>Performance Improvement</h2>
+            <p>Track your semester-wise GPA progress</p>
+            
+            <div class="improvement-chart">
+                <div class="chart-bar">
+                    <div class="bar" style="height: 75%">
+                        <div class="bar-value">8.5</div>
+                        <div class="bar-label">Sem 1</div>
+                    </div>
+                    <div class="bar" style="height: 78%">
+                        <div class="bar-value">8.8</div>
+                        <div class="bar-label">Sem 2</div>
+                    </div>
+                    <div class="bar" style="height: 77%">
+                        <div class="bar-value">8.7</div>
+                        <div class="bar-label">Sem 3</div>
+                    </div>
+                    <div class="bar" style="height: 82%">
+                        <div class="bar-value">9.1</div>
+                        <div class="bar-label">Sem 4</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Your performance has been consistently improving. Keep up the good work!</p>
+            
+            <div class="action-buttons">
+                <a href="#" class="btn">Download Transcripts</a>
+                <a href="#" class="btn btn-accent">Course Registration</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-shape"></div>
+        <div class="footer-content">
+            <p>&copy; 2023 Tharani's Student Portal. All rights reserved.</p>
+            <p>Department of Information Technology</p>
+        </div>
+    </footer>
+    
+    <script>
+        function openSemester(evt, semesterId) {
+            // Hide all semester content
+            var semesterContent = document.getElementsByClassName("semester-content");
+            for (var i = 0; i < semesterContent.length; i++) {
+                semesterContent[i].classList.remove("active");
+            }
+            
+            // Remove 'active' class from all tabs
+            var semesterTabs = document.getElementsByClassName("semester-tab");
+            for (var i = 0; i < semesterTabs.length; i++) {
+                semesterTabs[i].classList.remove("active");
+            }
+            
+            // Show the specific semester and add 'active' class to the button
+            document.getElementById(semesterId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
